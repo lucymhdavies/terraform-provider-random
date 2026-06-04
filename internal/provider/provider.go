@@ -35,6 +35,7 @@ func (p *randomProvider) Resources(context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		NewIdResource,
 		NewBytesResource,
+		NewFailureResource,
 		NewIntegerResource,
 		NewPasswordResource,
 		NewPetResource,
