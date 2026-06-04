@@ -4,7 +4,6 @@
 package provider
 
 import (
-	"fmt"
 	"os"
 	"regexp"
 	"testing"
@@ -52,14 +51,14 @@ func TestResourceFailure_ShouldFailByPercentage_FiftyPercent_Statistical(t *test
 		)
 	}
 
-	t.Log(fmt.Sprintf(
+	t.Logf(
 		"observed failure rate %d%% (%d/%d) within expected range %d%%-%d%%",
 		failurePercent,
 		failureCount,
 		runCount,
 		lowerBoundPercent,
 		upperBoundPercent,
-	))
+	)
 }
 
 func TestAccResourceFailure_Defaults(t *testing.T) {
