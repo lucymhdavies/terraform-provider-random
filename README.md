@@ -2,6 +2,7 @@
 
 The Random provider supports the use of randomness within Terraform configurations. The
 provider resources can be used to generate a random [id](docs/resources/id.md),
+[failure](docs/resources/failure.md),
 [integer](docs/resources/integer.md), [password](docs/resources/password.md),
 [pet](docs/resources/pet.md), [shuffle](docs/resources/shuffle.md) (random permutation
 of a list of strings), [string](docs/resources/string.md) or 
@@ -47,6 +48,16 @@ In order to test the provider, you can run
 
 * `make test` to run provider tests
 * `make testacc` to run provider acceptance tests
+
+Optional tests can be enabled explicitly when needed. For the `random_failure`
+statistical test, set `TF_ACC_RANDOM_FAILURE_STAT_TEST=1` and run:
+
+```shell
+go test ./internal/provider -run TestResourceFailure_ShouldFailByPercentage_FiftyPercent_Statistical -count=1
+```
+
+The statistical test is skipped by default and uses a conservative acceptance
+band so it can be exercised manually without affecting normal test runs.
 
 It's important to note that acceptance tests (`testacc`) will actually spawn
 `terraform` and the provider. Read more about they work on the
